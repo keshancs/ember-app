@@ -1,0 +1,25 @@
+{{page-title "Item"}}
+
+<div class="container mt-5">
+    <div class="card">
+        <Product::Image @class="full-size" @src={{this.productImage}} @alt={{this.model.name}} />
+        <Product::Details
+            @isDetails={{true}}
+            @id={{this.model.id}}
+            @name={{this.model.name}}
+            @price={{this.model.price}}
+            @colors={{this.model.colors}}
+            @color={{this.color}}
+            @changeColor={{this.changeColor}} />
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5>Features</h5>
+            <ul>
+                {{#each this.model.features as |feature|}}
+                    <li>{{feature}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>

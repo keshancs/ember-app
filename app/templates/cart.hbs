@@ -1,0 +1,58 @@
+{{page-title "Cart"}}
+
+<main class="container mt-5">
+    <div class="cart">
+        <h1 class="fs-4">Cart</h1>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><LinkTo @route="index">Home</LinkTo></li>
+                <li class="breadcrumb-item active" aria-current="page">Cart</li>
+            </ol>
+        </nav>
+
+        {{#if this.cart.itemList.length}}
+            <div class="card">
+                <div class="card-body">
+                    {{#each this.cart.itemList as |item|}}
+                        <div class="cart__item card border-0 mb-3">
+                            <div class="row g-0">
+                                <div class="col-xs-12 col-sm-4">
+                                    <img src={{item.image}} class="img-fluid rounded-lg" alt={{item.name}}>
+                                </div>
+                                <div class="col-xs-12 col-sm-8">
+                                    <div class="card-body">
+                                        <h6 class="card-title">{{item.name}}</h6>
+                                        <p class="card-text fw-bold text-danger">{{currency item.price}}</p>
+                                        <div class="cart__item-quantity input-group">
+                                            <button class="btn btn-dark me-1" type="button" {{on "click" (fn this.decreaseQuantity item)}}>-</button>
+                                            <input type="text" class="form-control text-center" value={{item.quantity}} {{on "input" (fn this.updateQuantity item)}} />
+                                            <button class="btn btn-dark ms-1" type="button" {{on "click" (fn this.increaseQuantity item)}}>+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-body d-flex justify-content-between">
+                    <span class="fs-5">Total</span>
+                    <span class="fs-5">{{currency this.total}}</span>
+                </div>
+            </div>
+
+            <div class="text-end mt-3">
+                <button data-test-checkout type="button" class="btn btn-dark">Checkout</button>
+            </div>
+        {{else}}
+            <div class="alert alert-primary" role="alert">
+                Cart is empty.
+            </div>
+        {{/if}}
+    </div>
+</main>
+
+{{outlet}}

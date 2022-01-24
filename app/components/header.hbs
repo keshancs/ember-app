@@ -1,0 +1,17 @@
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <ul class="nav col-6 offset-md-3 mb-2 justify-content-center mb-md-0">
+        <li>
+            <LinkTo @route="index" class="nav-link px-2 link-secondary">Home</LinkTo>
+        </li>
+    </ul>
+    <div class="col-3 text-end">
+        <LinkTo data-test-cart @route="cart" class="btn btn-dark position-relative">
+            <i class="fas fa-shopping-cart"></i>
+            {{#if this.cart.itemList.length}}
+                <span data-test-cart-quantity class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{this.cartQuantity}}
+                </span>
+            {{/if}}
+        </LinkTo>
+    </div>
+</header>

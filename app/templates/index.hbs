@@ -1,0 +1,11 @@
+{{page-title "Index"}}
+
+<main class="container mt-5">
+    <div class="row g-3">
+        {{#each this.model as |product|}}
+            <Product @product={{product}} />
+        {{/each}}
+    </div>
+</main>
+
+{{outlet}}

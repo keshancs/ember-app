@@ -1,0 +1,21 @@
+<div class="card-body">
+    <h5 class="card-title text-dark">{{@name}}</h5>
+    <p class="card-text text-muted">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="{{unless @isDetails ' fs-5'}}">
+        <del data-test-original-price class="small text-dark">{{currency @price.original}}</del>
+        <i data-test-current-price class="text-danger fw-bold">{{currency @price.current}}</i>
+    </div>
+    {{#if @isDetails}}
+        <div class="colors color-{{@color}} mt-3 mb-3">
+            <h6 class="mb-1">Colors</h6>
+            {{#each @colors as |color|}}
+                <span data-test-color class="color {{concat 'bg-' color.color}} rounded-circle" {{on "click" (fn @changeColor color.color)}}></span>
+            {{/each}}
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+            <button data-test-add-to-cart class="btn btn-primary" type="button" {{on "click" this.addToCart}}>
+                <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+            </button>
+        </div>
+    {{/if}}
+</div>
